@@ -32,8 +32,8 @@ public class AuthController {
     private PropertyService propertyService;
     @Autowired
     private WasiatService wasiatService;
-    
-    
+
+
 
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -47,7 +47,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginForm() {
-        if(userService.findAllUsers().isEmpty()){
+        if (userService.findAllUsers().isEmpty()) {
             userService.initAdmin();
         }
         return "login";
@@ -63,12 +63,12 @@ public class AuthController {
 
     // handler method to handle register user form submit request
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute UserDto user,
-            BindingResult result,
+    public String registration(@Valid @ModelAttribute UserDto user, BindingResult result,
             Model model) {
         User existing = userService.findByEmail(user.getEmail());
         if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+            result.rejectValue("email", null,
+                    "There is already an account registered with that email");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", user);
@@ -86,8 +86,8 @@ public class AuthController {
             String username = authentication.getName();
             User user = userService.getCurrentUser();
             Long userId = user.getId();
-            
-            
+
+
             model.addAttribute("username", username);
             model.addAttribute("userId", userId);
         }
@@ -95,22 +95,20 @@ public class AuthController {
     }
 
     @GetMapping("/users/editprofile")
-	public String editprofileform(Model model) {
+    public String editprofileform(Model model) {
         User user = userService.getCurrentUser();
-		model.addAttribute("user", user);
+        model.addAttribute("user", user);
         if (user.getId() == null) {
             // Handle the case where the user ID is null
             // This might involve showing an error message or redirecting to an error page
             return "error";
         }
-		return "editprofile";
-	}
+        return "editprofile";
+    }
 
     // handler method to handle register user form submit request
     @PostMapping("/users/editprofile/save")
-    public String editprofile(@ModelAttribute User user,
-            BindingResult result,
-            Model model) {
+    public String editprofile(@ModelAttribute User user, BindingResult result, Model model) {
         // User existing = userService.getCurrentUser();
         if (user.getId() == null) {
             // Handle the case where the user ID is null
@@ -121,13 +119,15 @@ public class AuthController {
         User currentUser = userService.getCurrentUser();
         User existingUser = userService.findByEmail(user.getEmail());
 
-        if(existingUser!=null){
-            if(!currentUser.getEmail().equals(existingUser.getEmail()) && user.getEmail().equals(existingUser.getEmail())){
-                result.rejectValue("email", null, "There is already an account registered with that email");
+        if (existingUser != null) {
+            if (!currentUser.getEmail().equals(existingUser.getEmail())
+                    && user.getEmail().equals(existingUser.getEmail())) {
+                result.rejectValue("email", null,
+                        "There is already an account registered with that email");
             }
             if (result.hasErrors()) {
                 // model.addAttribute("user", user);
-                  System.out.println("Ada error");
+                System.out.println("Ada error");
                 return "redirect:/users/editprofile";
             }
         }
@@ -135,6 +135,7 @@ public class AuthController {
         userService.updateUser(user);
         return "redirect:/users/editprofile";
     }
+
     @GetMapping("/admin")
     public String listRegisteredUsers(Model model) {
         List<User> pewarisList = userService.findAllPewaris();
@@ -155,7 +156,7 @@ public class AuthController {
         User user = new User();
         model.addAttribute("user", user);
         return "adminAdd";
-    }  
+    }
 
     @PostMapping("/admin/addadmin/save")
     public String addAdmin(@ModelAttribute("admin") User user, Model model) {
@@ -169,7 +170,7 @@ public class AuthController {
     }
 
     @GetMapping("/admin/pewarisDetail/{id}")
-    public String pewarisDetail(@PathVariable Long id, Model model){
+    public String pewarisDetail(@PathVariable Long id, Model model) {
 
         User pewaris = userService.findUserById(id);
 
@@ -179,7 +180,7 @@ public class AuthController {
     }
 
     @GetMapping("/admin/pewarisProperty/{id}")
-    public String pewarisProperty(@PathVariable Long id, Model model){
+    public String pewarisProperty(@PathVariable Long id, Model model) {
 
         List<Property> propertyList = propertyService.getPropertiesByUserId(id);
 
@@ -189,20 +190,20 @@ public class AuthController {
     }
 
     @GetMapping("/admin/pewarisHeirs/{id}")
-    public String pewarisHeirs(@PathVariable Long id, Model model){
+    public String pewarisHeirs(@PathVariable Long id, Model model) {
         Wasiat wasiat = wasiatService.getWasiatByUserId(id);
         model.addAttribute("wasiat", wasiat);
         return "adminUserHeirs";
     }
 
     @GetMapping("/admin/deletePewaris/{id}")
-    public String pewarisDelete(@PathVariable Long id){
+    public String pewarisDelete(@PathVariable Long id) {
         userService.deleteUserById(id);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/adminDelete/{id}")
-    public String adminDelete(@PathVariable Long id, Model model){
+    public String adminDelete(@PathVariable Long id, Model model) {
 
         userService.deleteUserById(id);
 
@@ -212,13 +213,13 @@ public class AuthController {
     }
 
     @GetMapping("/admin/pewarisWasiat/{id}")
-    public String pewarisWasiat(@PathVariable Long id, Model model){
+    public String pewarisWasiat(@PathVariable Long id, Model model) {
         User user = wasiatService.getWasiatDetailsByUserId(id);
-        Wasiat wasiat= wasiatService.getWasiatByUserId(user.getId());
+        Wasiat wasiat = wasiatService.getWasiatByUserId(user.getId());
         List<Property> propertyList = propertyService.getPropertiesByUserId(user.getId());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        
+
         model.addAttribute("username", username);
         if (wasiat != null) {
             model.addAttribute("propertyList", propertyList);
@@ -230,7 +231,5 @@ public class AuthController {
     }
 
 
-
-    
 
 }
