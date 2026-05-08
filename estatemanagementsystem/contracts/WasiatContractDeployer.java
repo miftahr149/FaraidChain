@@ -1,4 +1,4 @@
-//package com.ems.estatemanagementsystem;
+package com.ems.estatemanagementsystem;
 
 import contracts;
 import com.ems.estatemanagementsystem.entity.Wasiat;
@@ -14,8 +14,12 @@ import java.math.BigInteger;
 
 public class WasiatContractDeployer {
 
-    private static final String INFURA_URL = "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID"; // Replace with your Infura URL
-    private static final String PRIVATE_KEY = "YOUR_PRIVATE_KEY"; // Replace with your private key
+    private static final String INFURA_URL =
+            "https://mainnet.infura.io/v3/39c07a1d4ea14438aee3c9a147bd1b5c"; // Replace with your
+                                                                             // Infura URL
+    private static final String PRIVATE_KEY = "39c07a1d4ea14438aee3c9a147bd1b5c"; // Replace with
+                                                                                  // your private
+                                                                                  // key
 
     public static void main(String[] args) throws Exception {
         // Connect to the Ethereum network
@@ -25,11 +29,7 @@ public class WasiatContractDeployer {
         Credentials credentials = Credentials.create(PRIVATE_KEY);
 
         // Deploy the Wasiat contract
-        Wasiat wasiatContract = Wasiat.deploy(
-                web3j, 
-                credentials, 
-                new DefaultGasProvider()
-        ).send();
+        Wasiat wasiatContract = Wasiat.deploy(web3j, credentials, new DefaultGasProvider()).send();
 
         // Print the contract address
         String contractAddress = wasiatContract.getContractAddress();
@@ -46,7 +46,8 @@ public class WasiatContractDeployer {
     // Add a name to the Wasiat list
     private static void addNameToWasiat(Wasiat wasiatContract, String name) throws Exception {
         TransactionReceipt receipt = wasiatContract.addWasiat(name).send();
-        System.out.println("Name added: " + name + " | Transaction hash: " + receipt.getTransactionHash());
+        System.out.println(
+                "Name added: " + name + " | Transaction hash: " + receipt.getTransactionHash());
     }
 
     // Get and print the names in the Wasiat list

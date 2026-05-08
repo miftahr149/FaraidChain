@@ -17,21 +17,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "quitrent")
-public class QuitRent extends Land{
+public class QuitRent extends Land {
 
-    
-    private String accNumber;
+  private String accNumber;
 
-    
-    private String year;
+  private String year;
 
-    
-    private double amount;
+  private double amount;
 
-    
-    private Date paymentDate;
+  private Date paymentDate;
 
-    
-    private String lotNumber;
+  private String lotNumber;
 
 }

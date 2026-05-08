@@ -25,6 +25,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - "C:/Users/mifta/OneDrive/Documents/College/college/Final Year Project/Test:/app/uploads"
     environment:
       # We use 'db' (the service name) instead of localhost
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/emsdb

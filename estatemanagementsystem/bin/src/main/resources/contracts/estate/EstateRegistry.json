@@ -1,0 +1,1119 @@
+{
+    "contractName": "EstateRegistry",
+    "abi": [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "enum EstateRegistry.AssetType",
+                    "name": "_category",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_description",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_value",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_location",
+                    "type": "string"
+                }
+            ],
+            "name": "addAsset",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "estateVault",
+            "outputs": [
+                {
+                    "internalType": "enum EstateRegistry.AssetType",
+                    "name": "category",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "string",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "estimatedValue",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "location",
+                    "type": "string"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "isDistributed",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "itemCount",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.34+commit.80d5c536\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"enum EstateRegistry.AssetType\",\"name\":\"_category\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_location\",\"type\":\"string\"}],\"name\":\"addAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"estateVault\",\"outputs\":[{\"internalType\":\"enum EstateRegistry.AssetType\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"estimatedValue\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isDistributed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"itemCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"c:/Users/mifta/OneDrive/Documents/Github/FaraidChain/estatemanagementsystem/src/main/resources/contracts/estate/estateSmartContract.sol\":\"EstateRegistry\"},\"evmVersion\":\"osaka\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"c:/Users/mifta/OneDrive/Documents/Github/FaraidChain/estatemanagementsystem/src/main/resources/contracts/estate/estateSmartContract.sol\":{\"keccak256\":\"0x3c8ab6a11f93e6f8dbc177eb80bfb7f2a904501193b6f6ba3c70f8d80d149f7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://821a122acbc5c216b8cd2451016beac30807fb2cde6ff60781bc15af395524cf\",\"dweb:/ipfs/QmRdQYDuDGCYoDyHMCYYehrDnHCVwY5t23Uc56wVgxWnqv\"]}},\"version\":1}",
+    "bytecode": "608080604052346026575f80546001600160a01b03191633179055610699908161002b8239f35b5f80fdfe6080806040526004361015610012575f80fd5b5f3560e01c9081636bfb0d01146104d5575080638da5cb5b146104ae578063c26328581461041b5763fbb3dfd314610048575f80fd5b346104175760803660031901126104175760043560048110156104175760243567ffffffffffffffff81116104175761008590369060040161060d565b60643567ffffffffffffffff8111610417576100a590369060040161060d565b5f549092906001600160a01b031633036103be576002545f1981146103aa5760010191826002556040519160a0830183811067ffffffffffffffff8211176102bb57604052825260208201908152604082019060443582526060830194855260808301935f85525f52600160205260405f20925160048110156103965760ff8019855416911617835560018301905180519067ffffffffffffffff82116102bb57819061015284546104ef565b601f811161033d575b50602090601f83116001146102da575f926102cf575b50508160011b915f199060031b1c19161790555b51600282015560038101925192835167ffffffffffffffff81116102bb576101ad82546104ef565b601f811161026a575b506020601f8211600114610205578190600495965f926101fa575b50508160011b915f199060031b1c19161790555b019051151560ff801983541691161790555f80f35b015190505f806101d1565b601f19821695835f52815f20965f5b818110610252575091600496979184600195941061023a575b505050811b0190556101e5565b01515f1960f88460031b161c191690555f808061022d565b83830151895560019098019760209384019301610214565b818111156101b657825f5260205f20601f830160051c90602084106102b3575b81601f9101920160051c03905f5b8281106102a65750506101b6565b5f82820155600101610298565b5f915061028a565b634e487b7160e01b5f52604160045260245ffd5b015190505f80610171565b5f8581528281209350601f198516905b818110610325575090846001959493921061030d575b505050811b019055610185565b01515f1960f88460031b161c191690555f8080610300565b929360206001819287860151815501950193016102ea565b8281111561015b57909150835f5260205f20601f840160051c906020851061038e575b849392601f0160051c82900391015f5b82811061037e57505061015b565b5f81830155859450600101610370565b5f9150610360565b634e487b7160e01b5f52602160045260245ffd5b634e487b7160e01b5f52601160045260245ffd5b60405162461bcd60e51b815260206004820152602b60248201527f4f6e6c792074686520646563656173656420286f776e6572292063616e206d6160448201526a6e6167652061737365747360a81b6064820152608490fd5b5f80fd5b34610417576020366003190112610417576004355f52600160205260405f2060ff81541661044b60018301610549565b60028301549060ff600461046160038701610549565b95015416916040519460048510156103965761048f6104a2938796875260a0602088015260a08701906105e9565b91604086015284820360608601526105e9565b90151560808301520390f35b34610417575f366003190112610417575f546040516001600160a01b039091168152602090f35b34610417575f366003190112610417576020906002548152f35b90600182811c9216801561051d575b602083101461050957565b634e487b7160e01b5f52602260045260245ffd5b91607f16916104fe565b90601f8019910116810190811067ffffffffffffffff8211176102bb57604052565b9060405191825f82549261055c846104ef565b80845293600181169081156105c75750600114610583575b5061058192500383610527565b565b90505f9291925260205f20905f915b8183106105ab575050906020610581928201015f610574565b6020919350806001915483858901015201910190918492610592565b90506020925061058194915060ff191682840152151560051b8201015f610574565b805180835260209291819084018484015e5f828201840152601f01601f1916010190565b81601f820112156104175780359067ffffffffffffffff82116102bb5760405192610642601f8401601f191660200185610527565b8284526020838301011161041757815f92602080930183860137830101529056fea2646970667358221220130648d519766863a2c9df36fa7379ba9a91d33e6f2d98e122122eb03da42b4e64736f6c63430008220033",
+    "deployedBytecode": "6080806040526004361015610012575f80fd5b5f3560e01c9081636bfb0d01146104d5575080638da5cb5b146104ae578063c26328581461041b5763fbb3dfd314610048575f80fd5b346104175760803660031901126104175760043560048110156104175760243567ffffffffffffffff81116104175761008590369060040161060d565b60643567ffffffffffffffff8111610417576100a590369060040161060d565b5f549092906001600160a01b031633036103be576002545f1981146103aa5760010191826002556040519160a0830183811067ffffffffffffffff8211176102bb57604052825260208201908152604082019060443582526060830194855260808301935f85525f52600160205260405f20925160048110156103965760ff8019855416911617835560018301905180519067ffffffffffffffff82116102bb57819061015284546104ef565b601f811161033d575b50602090601f83116001146102da575f926102cf575b50508160011b915f199060031b1c19161790555b51600282015560038101925192835167ffffffffffffffff81116102bb576101ad82546104ef565b601f811161026a575b506020601f8211600114610205578190600495965f926101fa575b50508160011b915f199060031b1c19161790555b019051151560ff801983541691161790555f80f35b015190505f806101d1565b601f19821695835f52815f20965f5b818110610252575091600496979184600195941061023a575b505050811b0190556101e5565b01515f1960f88460031b161c191690555f808061022d565b83830151895560019098019760209384019301610214565b818111156101b657825f5260205f20601f830160051c90602084106102b3575b81601f9101920160051c03905f5b8281106102a65750506101b6565b5f82820155600101610298565b5f915061028a565b634e487b7160e01b5f52604160045260245ffd5b015190505f80610171565b5f8581528281209350601f198516905b818110610325575090846001959493921061030d575b505050811b019055610185565b01515f1960f88460031b161c191690555f8080610300565b929360206001819287860151815501950193016102ea565b8281111561015b57909150835f5260205f20601f840160051c906020851061038e575b849392601f0160051c82900391015f5b82811061037e57505061015b565b5f81830155859450600101610370565b5f9150610360565b634e487b7160e01b5f52602160045260245ffd5b634e487b7160e01b5f52601160045260245ffd5b60405162461bcd60e51b815260206004820152602b60248201527f4f6e6c792074686520646563656173656420286f776e6572292063616e206d6160448201526a6e6167652061737365747360a81b6064820152608490fd5b5f80fd5b34610417576020366003190112610417576004355f52600160205260405f2060ff81541661044b60018301610549565b60028301549060ff600461046160038701610549565b95015416916040519460048510156103965761048f6104a2938796875260a0602088015260a08701906105e9565b91604086015284820360608601526105e9565b90151560808301520390f35b34610417575f366003190112610417575f546040516001600160a01b039091168152602090f35b34610417575f366003190112610417576020906002548152f35b90600182811c9216801561051d575b602083101461050957565b634e487b7160e01b5f52602260045260245ffd5b91607f16916104fe565b90601f8019910116810190811067ffffffffffffffff8211176102bb57604052565b9060405191825f82549261055c846104ef565b80845293600181169081156105c75750600114610583575b5061058192500383610527565b565b90505f9291925260205f20905f915b8183106105ab575050906020610581928201015f610574565b6020919350806001915483858901015201910190918492610592565b90506020925061058194915060ff191682840152151560051b8201015f610574565b805180835260209291819084018484015e5f828201840152601f01601f1916010190565b81601f820112156104175780359067ffffffffffffffff82116102bb5760405192610642601f8401601f191660200185610527565b8284526020838301011161041757815f92602080930183860137830101529056fea2646970667358221220130648d519766863a2c9df36fa7379ba9a91d33e6f2d98e122122eb03da42b4e64736f6c63430008220033",
+    "sourceMap": "61:1310:0:-:0;;;;;;;673:18;61:1310;;-1:-1:-1;;;;;;61:1310:0;681:10;61:1310;;;;;;;;;;;;;",
+    "deployedSourceMap": "61:1310:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:1310:0;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;-1:-1:-1;;;;;61:1310:0;761:10;:19;61:1310;;1110:11;61:1310;-1:-1:-1;;61:1310:0;;;;;;;;1110:11;61:1310;;;;;;;;;;;;;;;;;;;;;1157:203;;61:1310;;;;1157:203;;61:1310;;;;;;1157:203;;61:1310;;;;1157:203;;61:1310;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1110:11;61:1310;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;-1:-1:-1;;;61:1310:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;61:1310:0;;;;;;;;;;;;;;;;;-1:-1:-1;;;61:1310:0;;;;;;;;;;;;;;;;;-1:-1:-1;;61:1310:0;;;;;;;;;;;;;;;;;;559:49;61:1310;559:49;;;:::i;:::-;;;;61:1310;559:49;61:1310;;559:49;;;;;:::i;:::-;;;61:1310;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;;61:1310:0;;;;;;;;-1:-1:-1;;;;;61:1310:0;;;;;;;;;;;;;;-1:-1:-1;;61:1310:0;;;;;;615:24;61:1310;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;-1:-1:-1;61:1310:0;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;-1:-1:-1;61:1310:0;;;;;-1:-1:-1;61:1310:0;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;-1:-1:-1;;61:1310:0;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;61:1310:0;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;61:1310:0;;;;;;;;;;;;;;:::o",
+    "sourcePath": "c:/Users/mifta/OneDrive/Documents/Github/FaraidChain/estatemanagementsystem/src/main/resources/contracts/estate/estateSmartContract.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.34+commit.80d5c536"
+    },
+    "ast": {
+        "absolutePath": "c:/Users/mifta/OneDrive/Documents/Github/FaraidChain/estatemanagementsystem/src/main/resources/contracts/estate/estateSmartContract.sol",
+        "exportedSymbols": {
+            "EstateRegistry": [
+                79
+            ]
+        },
+        "id": 80,
+        "license": "MIT",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 1,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".20"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "33:24:0"
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "EstateRegistry",
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "fullyImplemented": true,
+                "id": 79,
+                "linearizedBaseContracts": [
+                    79
+                ],
+                "name": "EstateRegistry",
+                "nameLocation": "70:14:0",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": false,
+                        "functionSelector": "8da5cb5b",
+                        "id": 3,
+                        "mutability": "mutable",
+                        "name": "owner",
+                        "nameLocation": "107:5:0",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 79,
+                        "src": "92:20:0",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 2,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "92:7:0",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "canonicalName": "EstateRegistry.AssetType",
+                        "id": 8,
+                        "members": [
+                            {
+                                "id": 4,
+                                "name": "RealEstate",
+                                "nameLocation": "147:10:0",
+                                "nodeType": "EnumValue",
+                                "src": "147:10:0"
+                            },
+                            {
+                                "id": 5,
+                                "name": "BankAccount",
+                                "nameLocation": "168:11:0",
+                                "nodeType": "EnumValue",
+                                "src": "168:11:0"
+                            },
+                            {
+                                "id": 6,
+                                "name": "PersonalItem",
+                                "nameLocation": "190:12:0",
+                                "nodeType": "EnumValue",
+                                "src": "190:12:0"
+                            },
+                            {
+                                "id": 7,
+                                "name": "DigitalAsset",
+                                "nameLocation": "213:12:0",
+                                "nodeType": "EnumValue",
+                                "src": "213:12:0"
+                            }
+                        ],
+                        "name": "AssetType",
+                        "nameLocation": "126:9:0",
+                        "nodeType": "EnumDefinition",
+                        "src": "121:111:0"
+                    },
+                    {
+                        "canonicalName": "EstateRegistry.EstateItem",
+                        "id": 20,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 11,
+                                "mutability": "mutable",
+                                "name": "category",
+                                "nameLocation": "279:8:0",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 20,
+                                "src": "269:18:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_enum$_AssetType_$8",
+                                    "typeString": "enum EstateRegistry.AssetType"
+                                },
+                                "typeName": {
+                                    "id": 10,
+                                    "nodeType": "UserDefinedTypeName",
+                                    "pathNode": {
+                                        "id": 9,
+                                        "name": "AssetType",
+                                        "nameLocations": [
+                                            "269:9:0"
+                                        ],
+                                        "nodeType": "IdentifierPath",
+                                        "referencedDeclaration": 8,
+                                        "src": "269:9:0"
+                                    },
+                                    "referencedDeclaration": 8,
+                                    "src": "269:9:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_enum$_AssetType_$8",
+                                        "typeString": "enum EstateRegistry.AssetType"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 13,
+                                "mutability": "mutable",
+                                "name": "description",
+                                "nameLocation": "305:11:0",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 20,
+                                "src": "298:18:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_string_storage_ptr",
+                                    "typeString": "string"
+                                },
+                                "typeName": {
+                                    "id": 12,
+                                    "name": "string",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "298:6:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_storage_ptr",
+                                        "typeString": "string"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 15,
+                                "mutability": "mutable",
+                                "name": "estimatedValue",
+                                "nameLocation": "335:14:0",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 20,
+                                "src": "327:22:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                },
+                                "typeName": {
+                                    "id": 14,
+                                    "name": "uint256",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "327:7:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 17,
+                                "mutability": "mutable",
+                                "name": "location",
+                                "nameLocation": "416:8:0",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 20,
+                                "src": "409:15:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_string_storage_ptr",
+                                    "typeString": "string"
+                                },
+                                "typeName": {
+                                    "id": 16,
+                                    "name": "string",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "409:6:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_storage_ptr",
+                                        "typeString": "string"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 19,
+                                "mutability": "mutable",
+                                "name": "isDistributed",
+                                "nameLocation": "482:13:0",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 20,
+                                "src": "477:18:0",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_bool",
+                                    "typeString": "bool"
+                                },
+                                "typeName": {
+                                    "id": 18,
+                                    "name": "bool",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "477:4:0",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    }
+                                },
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "EstateItem",
+                        "nameLocation": "247:10:0",
+                        "nodeType": "StructDefinition",
+                        "scope": 79,
+                        "src": "240:263:0",
+                        "visibility": "public"
+                    },
+                    {
+                        "constant": false,
+                        "functionSelector": "c2632858",
+                        "id": 25,
+                        "mutability": "mutable",
+                        "name": "estateVault",
+                        "nameLocation": "597:11:0",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 79,
+                        "src": "559:49:0",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_EstateItem_$20_storage_$",
+                            "typeString": "mapping(uint256 => struct EstateRegistry.EstateItem)"
+                        },
+                        "typeName": {
+                            "id": 24,
+                            "keyName": "",
+                            "keyNameLocation": "-1:-1:-1",
+                            "keyType": {
+                                "id": 21,
+                                "name": "uint256",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "567:7:0",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                }
+                            },
+                            "nodeType": "Mapping",
+                            "src": "559:30:0",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_EstateItem_$20_storage_$",
+                                "typeString": "mapping(uint256 => struct EstateRegistry.EstateItem)"
+                            },
+                            "valueName": "",
+                            "valueNameLocation": "-1:-1:-1",
+                            "valueType": {
+                                "id": 23,
+                                "nodeType": "UserDefinedTypeName",
+                                "pathNode": {
+                                    "id": 22,
+                                    "name": "EstateItem",
+                                    "nameLocations": [
+                                        "578:10:0"
+                                    ],
+                                    "nodeType": "IdentifierPath",
+                                    "referencedDeclaration": 20,
+                                    "src": "578:10:0"
+                                },
+                                "referencedDeclaration": 20,
+                                "src": "578:10:0",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_EstateItem_$20_storage_ptr",
+                                    "typeString": "struct EstateRegistry.EstateItem"
+                                }
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "constant": false,
+                        "functionSelector": "6bfb0d01",
+                        "id": 27,
+                        "mutability": "mutable",
+                        "name": "itemCount",
+                        "nameLocation": "630:9:0",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 79,
+                        "src": "615:24:0",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 26,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "615:7:0",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 35,
+                            "nodeType": "Block",
+                            "src": "662:37:0",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 33,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "id": 30,
+                                            "name": "owner",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 3,
+                                            "src": "673:5:0",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "expression": {
+                                                "id": 31,
+                                                "name": "msg",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967281,
+                                                "src": "681:3:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_magic_message",
+                                                    "typeString": "msg"
+                                                }
+                                            },
+                                            "id": 32,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberLocation": "685:6:0",
+                                            "memberName": "sender",
+                                            "nodeType": "MemberAccess",
+                                            "src": "681:10:0",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            }
+                                        },
+                                        "src": "673:18:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "id": 34,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "673:18:0"
+                                }
+                            ]
+                        },
+                        "id": 36,
+                        "implemented": true,
+                        "kind": "constructor",
+                        "modifiers": [],
+                        "name": "",
+                        "nameLocation": "-1:-1:-1",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 28,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "659:2:0"
+                        },
+                        "returnParameters": {
+                            "id": 29,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "662:0:0"
+                        },
+                        "scope": 79,
+                        "src": "648:51:0",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 47,
+                            "nodeType": "Block",
+                            "src": "728:143:0",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "commonType": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                },
+                                                "id": 42,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "leftExpression": {
+                                                    "expression": {
+                                                        "id": 39,
+                                                        "name": "msg",
+                                                        "nodeType": "Identifier",
+                                                        "overloadedDeclarations": [],
+                                                        "referencedDeclaration": 4294967281,
+                                                        "src": "761:3:0",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_magic_message",
+                                                            "typeString": "msg"
+                                                        }
+                                                    },
+                                                    "id": 40,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": false,
+                                                    "lValueRequested": false,
+                                                    "memberLocation": "765:6:0",
+                                                    "memberName": "sender",
+                                                    "nodeType": "MemberAccess",
+                                                    "src": "761:10:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "nodeType": "BinaryOperation",
+                                                "operator": "==",
+                                                "rightExpression": {
+                                                    "id": 41,
+                                                    "name": "owner",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 3,
+                                                    "src": "775:5:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "src": "761:19:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "4f6e6c792074686520646563656173656420286f776e6572292063616e206d616e61676520617373657473",
+                                                "id": 43,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "795:45:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_fa04a52643fe3abe6bb2cfa4aa2281de5413e54bf6899853faf130af71e49c74",
+                                                    "typeString": "literal_string \"Only the deceased (owner) can manage assets\""
+                                                },
+                                                "value": "Only the deceased (owner) can manage assets"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_fa04a52643fe3abe6bb2cfa4aa2281de5413e54bf6899853faf130af71e49c74",
+                                                    "typeString": "literal_string \"Only the deceased (owner) can manage assets\""
+                                                }
+                                            ],
+                                            "id": 38,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "739:7:0",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 44,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "nameLocations": [],
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "739:112:0",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 45,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "739:112:0"
+                                },
+                                {
+                                    "id": 46,
+                                    "nodeType": "PlaceholderStatement",
+                                    "src": "862:1:0"
+                                }
+                            ]
+                        },
+                        "id": 48,
+                        "name": "onlyOwner",
+                        "nameLocation": "716:9:0",
+                        "nodeType": "ModifierDefinition",
+                        "parameters": {
+                            "id": 37,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "725:2:0"
+                        },
+                        "src": "707:164:0",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 77,
+                            "nodeType": "Block",
+                            "src": "1099:269:0",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 63,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "UnaryOperation",
+                                        "operator": "++",
+                                        "prefix": false,
+                                        "src": "1110:11:0",
+                                        "subExpression": {
+                                            "id": 62,
+                                            "name": "itemCount",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 27,
+                                            "src": "1110:9:0",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            }
+                                        },
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "id": 64,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1110:11:0"
+                                },
+                                {
+                                    "expression": {
+                                        "id": 75,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "baseExpression": {
+                                                "id": 65,
+                                                "name": "estateVault",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 25,
+                                                "src": "1132:11:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_EstateItem_$20_storage_$",
+                                                    "typeString": "mapping(uint256 => struct EstateRegistry.EstateItem storage ref)"
+                                                }
+                                            },
+                                            "id": 67,
+                                            "indexExpression": {
+                                                "id": 66,
+                                                "name": "itemCount",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 27,
+                                                "src": "1144:9:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            },
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": true,
+                                            "nodeType": "IndexAccess",
+                                            "src": "1132:22:0",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_EstateItem_$20_storage",
+                                                "typeString": "struct EstateRegistry.EstateItem storage ref"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "arguments": [
+                                                {
+                                                    "id": 69,
+                                                    "name": "_category",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 51,
+                                                    "src": "1193:9:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_enum$_AssetType_$8",
+                                                        "typeString": "enum EstateRegistry.AssetType"
+                                                    }
+                                                },
+                                                {
+                                                    "id": 70,
+                                                    "name": "_description",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 53,
+                                                    "src": "1230:12:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_string_memory_ptr",
+                                                        "typeString": "string memory"
+                                                    }
+                                                },
+                                                {
+                                                    "id": 71,
+                                                    "name": "_value",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 55,
+                                                    "src": "1273:6:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    }
+                                                },
+                                                {
+                                                    "id": 72,
+                                                    "name": "_location",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 57,
+                                                    "src": "1304:9:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_string_memory_ptr",
+                                                        "typeString": "string memory"
+                                                    }
+                                                },
+                                                {
+                                                    "hexValue": "66616c7365",
+                                                    "id": 73,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": true,
+                                                    "kind": "bool",
+                                                    "lValueRequested": false,
+                                                    "nodeType": "Literal",
+                                                    "src": "1343:5:0",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_bool",
+                                                        "typeString": "bool"
+                                                    },
+                                                    "value": "false"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": [
+                                                    {
+                                                        "typeIdentifier": "t_enum$_AssetType_$8",
+                                                        "typeString": "enum EstateRegistry.AssetType"
+                                                    },
+                                                    {
+                                                        "typeIdentifier": "t_string_memory_ptr",
+                                                        "typeString": "string memory"
+                                                    },
+                                                    {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    },
+                                                    {
+                                                        "typeIdentifier": "t_string_memory_ptr",
+                                                        "typeString": "string memory"
+                                                    },
+                                                    {
+                                                        "typeIdentifier": "t_bool",
+                                                        "typeString": "bool"
+                                                    }
+                                                ],
+                                                "id": 68,
+                                                "name": "EstateItem",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 20,
+                                                "src": "1157:10:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_struct$_EstateItem_$20_storage_ptr_$",
+                                                    "typeString": "type(struct EstateRegistry.EstateItem storage pointer)"
+                                                }
+                                            },
+                                            "id": 74,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "structConstructorCall",
+                                            "lValueRequested": false,
+                                            "nameLocations": [
+                                                "1183:8:0",
+                                                "1217:11:0",
+                                                "1257:14:0",
+                                                "1294:8:0",
+                                                "1328:13:0"
+                                            ],
+                                            "names": [
+                                                "category",
+                                                "description",
+                                                "estimatedValue",
+                                                "location",
+                                                "isDistributed"
+                                            ],
+                                            "nodeType": "FunctionCall",
+                                            "src": "1157:203:0",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_EstateItem_$20_memory_ptr",
+                                                "typeString": "struct EstateRegistry.EstateItem memory"
+                                            }
+                                        },
+                                        "src": "1132:228:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_EstateItem_$20_storage",
+                                            "typeString": "struct EstateRegistry.EstateItem storage ref"
+                                        }
+                                    },
+                                    "id": 76,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1132:228:0"
+                                }
+                            ]
+                        },
+                        "functionSelector": "fbb3dfd3",
+                        "id": 78,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "id": 60,
+                                "kind": "modifierInvocation",
+                                "modifierName": {
+                                    "id": 59,
+                                    "name": "onlyOwner",
+                                    "nameLocations": [
+                                        "1089:9:0"
+                                    ],
+                                    "nodeType": "IdentifierPath",
+                                    "referencedDeclaration": 48,
+                                    "src": "1089:9:0"
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "1089:9:0"
+                            }
+                        ],
+                        "name": "addAsset",
+                        "nameLocation": "940:8:0",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 58,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 51,
+                                    "mutability": "mutable",
+                                    "name": "_category",
+                                    "nameLocation": "969:9:0",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 78,
+                                    "src": "959:19:0",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_enum$_AssetType_$8",
+                                        "typeString": "enum EstateRegistry.AssetType"
+                                    },
+                                    "typeName": {
+                                        "id": 50,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 49,
+                                            "name": "AssetType",
+                                            "nameLocations": [
+                                                "959:9:0"
+                                            ],
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 8,
+                                            "src": "959:9:0"
+                                        },
+                                        "referencedDeclaration": 8,
+                                        "src": "959:9:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_enum$_AssetType_$8",
+                                            "typeString": "enum EstateRegistry.AssetType"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 53,
+                                    "mutability": "mutable",
+                                    "name": "_description",
+                                    "nameLocation": "1003:12:0",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 78,
+                                    "src": "989:26:0",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 52,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "989:6:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 55,
+                                    "mutability": "mutable",
+                                    "name": "_value",
+                                    "nameLocation": "1034:6:0",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 78,
+                                    "src": "1026:14:0",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 54,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1026:7:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 57,
+                                    "mutability": "mutable",
+                                    "name": "_location",
+                                    "nameLocation": "1065:9:0",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 78,
+                                    "src": "1051:23:0",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 56,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1051:6:0",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "948:133:0"
+                        },
+                        "returnParameters": {
+                            "id": 61,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1099:0:0"
+                        },
+                        "scope": 79,
+                        "src": "931:437:0",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "public"
+                    }
+                ],
+                "scope": 80,
+                "src": "61:1310:0",
+                "usedErrors": [],
+                "usedEvents": []
+            }
+        ],
+        "src": "33:1340:0"
+    },
+    "functionHashes": {
+        "addAsset(uint8,string,uint256,string)": "fbb3dfd3",
+        "estateVault(uint256)": "c2632858",
+        "itemCount()": "6bfb0d01",
+        "owner()": "8da5cb5b"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "337800",
+            "executionCost": "24615",
+            "totalCost": "362415"
+        },
+        "external": {
+            "addAsset(uint8,string,uint256,string)": "infinite",
+            "estateVault(uint256)": "infinite",
+            "itemCount()": "2248",
+            "owner()": "2301"
+        }
+    }
+}

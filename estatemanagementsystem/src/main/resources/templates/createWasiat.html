@@ -1,1204 +1,1418 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Wasiat</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Wasiat</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link th:href="@{/css/style.css}" rel="stylesheet">
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link th:href="@{/static/img/favicon.png}" rel="icon" />
 
-  <!-- Favicons -->
-  <link th:href="@{/static/img/favicon.png}" rel="icon">
+    <!-- Google Fonts -->
+    <link
+      th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link
-    th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
-    rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet" />
+    <link
+      th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+      rel="stylesheet"
+    />
+    <link
+      th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}"
+      rel="stylesheet"
+    />
+    <link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet" />
+    <link
+      th:href="@{/vendor/glightbox/css/glightbox.min.css}"
+      rel="stylesheet"
+    />
+    <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet" />
 
-  <!-- Vendor CSS Files -->
-  <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-  <link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
-  <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+    <!--Web3-->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
 
-  <!--Web3-->
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+      }
 
-  <style>
-    body {
-      font-family: "Open Sans", sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-    }
+      form {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 80px;
+        width: 400px;
+        margin-bottom: 50px;
+        margin-top: 30px;
+      }
 
-    form {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      padding: 80px;
-      width: 400px;
-      margin-bottom: 50px;
-      margin-top: 30px;
-    }
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+      }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
+      button,
+      select {
+        margin-top: 8px;
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
 
-    button,
-    select {
-      margin-top: 8px;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-  </style>
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <h1><a th:href="@{/users}">EMS</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
 
-</head>
-
-<body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center ">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <h1><a th:href="@{/users}">EMS</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Service</a></li>
-          <li><a class="nav-link scrollto " th:href="@{/propertyList}">Info Harta</a></li>
-          <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li class="dropdown"><a href="#"><span>Heirs Management</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a th:href="@{/wasiat/create}">Add Heirs</a></li>
-                  <li><a th:href="@{/wasiat/edit/{userId}(userId=${userId})}">Update Heirs</a></li>
-                </ul>
-              </li>
-              <li><a th:href="@{/propertyList}">Add Estate</a></li>
-              <li><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Information</a></li>
-              <li><a th:href="@{/wasiat/view/{userId}(userId=${userId})}">Personal Information</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <nav id="navbar-login" class="navbar-login">
+        <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto" th:href="@{/logout}">Log Out</a></li>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Service</a></li>
+            <li>
+              <a class="nav-link scrollto" th:href="@{/propertyList}"
+                >Info Harta</a
+              >
+            </li>
+            <li class="dropdown">
+              <a href="#"
+                ><span>More</span> <i class="bi bi-chevron-down"></i
+              ></a>
+              <ul>
+                <li class="dropdown">
+                  <a href="#"
+                    ><span>Heirs Management</span>
+                    <i class="bi bi-chevron-right"></i
+                  ></a>
+                  <ul>
+                    <li><a th:href="@{/wasiat/create}">Add Heirs</a></li>
+                    <li>
+                      <a th:href="@{/wasiat/edit/{userId}(userId=${userId})}"
+                        >Update Heirs</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li><a th:href="@{/propertyList}">Add Estate</a></li>
+                <li>
+                  <a th:href="@{/wasiat/details/{userId}(userId=${userId})}"
+                    >Wasiat Information</a
+                  >
+                </li>
+                <li>
+                  <a th:href="@{/wasiat/view/{userId}(userId=${userId})}"
+                    >Personal Information</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           </ul>
+          <nav id="navbar-login" class="navbar-login">
+            <ul>
+              <li>
+                <a class="nav-link scrollto" th:href="@{/logout}">Log Out</a>
+              </li>
+            </ul>
+          </nav>
+          <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
-<section class="inner-page">
-<div class="container">
-  <form action="/wasiat/create/done"  id="wasiatcontract" method="post" th:object="${wasiat}">
-    <div id="firstForm">
-      <div>
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" th:field="*{gender}" onchange="showForm()">
-          <option value="">pilih</option>
-          <option value="lelaki">Lelaki</option>
-          <option value="perempuan">Perempuan</option>
-        </select>
+        <!-- .navbar -->
       </div>
+    </header>
+    <!-- End Header -->
 
-      <br />
-      <div id="isteriNum" class="hidden">
-        <label for="isteri">Isteri</label>
-        <select id="isteri" name="isteri" th:field="*{isteri}" onchange="updateIsteriInputs()">
-          <option value="">pilih</option>
-          <option value="tiada">tiada</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-        <br>
-        <div id="isteriNamesContainer">
-        </div>
+    <section class="inner-page">
+      <div class="container">
+        <form
+          action="/wasiat/create/done"
+          id="wasiatcontract"
+          method="post"
+          th:object="${wasiat}"
+        >
+          <div id="firstForm">
+            <div>
+              <label for="gender">Gender:</label>
+              <select
+                id="gender"
+                name="gender"
+                th:field="*{gender}"
+                onchange="showForm()"
+              >
+                <option value="">pilih</option>
+                <option value="lelaki">Lelaki</option>
+                <option value="perempuan">Perempuan</option>
+              </select>
+            </div>
+
+            <br />
+            <div id="isteriNum" class="hidden">
+              <label for="isteri">Isteri</label>
+              <select
+                id="isteri"
+                name="isteri"
+                th:field="*{isteri}"
+                onchange="updateIsteriInputs()"
+              >
+                <option value="">pilih</option>
+                <option value="tiada">tiada</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+              <br />
+              <div id="isteriNamesContainer"></div>
+            </div>
+
+            <br />
+            <div id="suamiNum" class="hidden">
+              <label for="suami">Suami</label>
+              <select
+                id="suami"
+                name="suami"
+                th:field="*{suami}"
+                onchange="updateSuami()"
+              >
+                <!-- onchange="anakForm(this)" -->
+                <option value="">pilih</option>
+                <option value="tiada">Tiada</option>
+                <option value="ada">Ada</option>
+              </select>
+              <br />
+              <div id="suamiNamesContainer"></div>
+            </div>
+            <br />
+            <div class="button-container">
+              <button
+                type="button"
+                class="blue-button"
+                onclick="showNextForm('firstForm', 'anakPunya')"
+              >
+                Seterusnya
+              </button>
+            </div>
+          </div>
+
+          <div id="anakPunya" class="hidden inline-selects">
+            <div id="anakLelakiContainer" class="form-group">
+              <label for="anakLelaki">Anak Lelaki</label>
+              <select
+                id="anakLelaki"
+                name="anakLelaki"
+                th:field="*{anakLelaki}"
+                onchange="addSonNameField()"
+              >
+                <option value="">pilih</option>
+                <option value="tiada">tiada</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <br />
+
+              <div id="sonNamesContainer"></div>
+              <div class="button-container">
+                <button
+                  type="button"
+                  class="grey-button"
+                  onclick="showPrevForm('firstForm', 'anakPunya')"
+                >
+                  Kembali
+                </button>
+                <button
+                  type="button"
+                  class="blue-button"
+                  onclick="
+                    showNextForm(
+                      'anakLelakiContainer',
+                      'anakPerempuanContainer',
+                    )
+                  "
+                >
+                  Seterusnya
+                </button>
+              </div>
+            </div>
+
+            <div id="anakPerempuanContainer" class="form-group">
+              <label for="anakPerempuan">Anak Perempuan</label>
+              <select
+                id="anakPerempuan"
+                name="anakPerempuan"
+                th:field="*{anakPerempuan}"
+                onchange="addDaughterNameField()"
+              >
+                <option value="">pilih</option>
+                <option value="tiada">tiada</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <br />
+
+              <div id="daughterNamesContainer"></div>
+
+              <div class="button-container">
+                <button
+                  type="button"
+                  class="grey-button"
+                  onclick="
+                    showPrevForm(
+                      'anakLelakiContainer',
+                      'anakPerempuanContainer',
+                    )
+                  "
+                >
+                  Kembali
+                </button>
+                <button
+                  type="button"
+                  class="blue-button"
+                  onclick="
+                    showNextForm(
+                      'anakPerempuanContainer',
+                      'anakAngkatContainer',
+                    )
+                  "
+                >
+                  Seterusnya
+                </button>
+              </div>
+            </div>
+
+            <div id="anakAngkatContainer" class="form-group">
+              <label for="anakAngkat">Anak Angkat</label>
+              <select
+                id="anakAngkat"
+                name="anakAngkat"
+                th:field="*{anakAngkat}"
+                onchange="addAngkatNameField()"
+              >
+                <option value="">pilih</option>
+                <option value="tiada">tiada</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <br />
+
+              <div id="angkatNamesContainer"></div>
+
+              <div class="button-container">
+                <button
+                  type="button"
+                  class="grey-button"
+                  onclick="
+                    showPrevForm(
+                      'anakPerempuanContainer',
+                      'anakAngkatContainer',
+                    )
+                  "
+                >
+                  Kembali
+                </button>
+                <button
+                  type="button"
+                  class="blue-button"
+                  onclick="showNextForm('anakAngkatContainer', 'thirdForm')"
+                >
+                  Seterusnya
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="thirdForm" class="hidden">
+            <label for="perbelanjaan"
+              >Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label
+            ><br />
+            <input
+              type="number"
+              id="perbelanjaan"
+              name="perbelanjaan"
+              th:field="*{perbelanjaan}"
+              oninput="checkFormCompleteness()"
+            /><br />
+
+            <br />
+            <label for="anggaran">Berapakah anggaran nilai harta anda </label>
+            <select
+              id="anggaran"
+              name="anggaran"
+              th:field="*{anggaran}"
+              oninput="checkFormCompleteness()"
+            >
+              <option value="">pilih</option>
+              <option value="kurang">Kurang dari RM2 juta</option>
+              <option value="lebih">Lebih dari RM2 juta</option></select
+            ><br />
+
+            <br />
+            <label for="hibah"
+              >Adakah anda bercadang untuk membuat Hibah?</label
+            >
+            <select
+              id="hibah"
+              name="hibah"
+              th:field="*{hibah}"
+              oninput="checkFormCompleteness()"
+            >
+              <option value="">pilih</option>
+              <option value="ya">Ya</option>
+              <option value="tidak">Tidak</option>
+            </select>
+            <button
+              type="button"
+              class="grey-button button-container"
+              onclick="showPrevForm('anakAngkatContainer', 'thirdForm')"
+            >
+              Kembali
+            </button>
+          </div>
+
+          <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
+          <br />
+          <button type="submit" id="submitButton" class="hidden green-button">
+            Submit
+          </button>
+        </form>
       </div>
-
-      <br />
-      <div id="suamiNum" class="hidden">
-        <label for="suami">Suami</label>
-        <select id="suami" name="suami" th:field="*{suami}" onchange="updateSuami()">
-          <!-- onchange="anakForm(this)" -->
-          <option value="">pilih</option>
-          <option value="tiada">Tiada</option>
-          <option value="ada">Ada</option>
-        </select>
-        <br>
-        <div id="suamiNamesContainer">
-        </div>
-      </div><br>
-      <div class="button-container">
-        <button type="button" class="blue-button" onclick="showNextForm('firstForm', 'anakPunya')">Seterusnya</button>
-      </div>
-    </div>
-
-    <div id="anakPunya" class="hidden inline-selects">
-      <div id="anakLelakiContainer" class="form-group">
-        <label for="anakLelaki">Anak Lelaki</label>
-        <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}" onchange="addSonNameField()">
-          <option value="">pilih</option>
-          <option value="tiada">tiada</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-        <br />
-
-        <div id="sonNamesContainer">
-        </div>
-        <div class="button-container">
-          <button type="button" class="grey-button" onclick="showPrevForm('firstForm', 'anakPunya')">Kembali</button>
-          <button type="button" class="blue-button"
-            onclick="showNextForm('anakLelakiContainer', 'anakPerempuanContainer')">Seterusnya</button>
-        </div>
-      </div>
-
-      <div id="anakPerempuanContainer" class="form-group">
-        <label for="anakPerempuan">Anak Perempuan</label>
-        <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}" onchange="addDaughterNameField()">
-          <option value="">pilih</option>
-          <option value="tiada">tiada</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-        <br>
-
-        <div id="daughterNamesContainer">
-        </div>
-
-        <div class="button-container">
-          <button type="button" class="grey-button"
-            onclick="showPrevForm('anakLelakiContainer', 'anakPerempuanContainer')">Kembali</button>
-          <button type="button" class="blue-button"
-            onclick="showNextForm('anakPerempuanContainer', 'anakAngkatContainer')">Seterusnya</button>
-        </div>
-      </div>
-
-      <div id="anakAngkatContainer" class="form-group">
-        <label for="anakAngkat">Anak Angkat</label>
-        <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}" onchange="addAngkatNameField()">
-          <option value="">pilih</option>
-          <option value="tiada">tiada</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-        <br>
-
-        <div id="angkatNamesContainer">
-        </div>
-
-        <div class="button-container">
-          <button type="button" class="grey-button"
-            onclick="showPrevForm('anakPerempuanContainer', 'anakAngkatContainer')">Kembali</button>
-          <button type="button" class="blue-button"
-            onclick="showNextForm('anakAngkatContainer', 'thirdForm')">Seterusnya</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="thirdForm" class="hidden">
-      <label for="perbelanjaan">Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label><br />
-      <input type="number" id="perbelanjaan" name="perbelanjaan" th:field="*{perbelanjaan}"
-        oninput="checkFormCompleteness()" /><br />
-
-      <br />
-      <label for="anggaran">Berapakah anggaran nilai harta anda </label>
-      <select id="anggaran" name="anggaran" th:field="*{anggaran}" oninput="checkFormCompleteness()">
-        <option value="">pilih</option>
-        <option value="kurang">Kurang dari RM2 juta</option>
-        <option value="lebih">Lebih dari RM2 juta</option>
-      </select><br />
-
-      <br />
-      <label for="hibah">Adakah anda bercadang untuk membuat Hibah?</label>
-      <select id="hibah" name="hibah" th:field="*{hibah}" oninput="checkFormCompleteness()">
-        <option value="">pilih</option>
-        <option value="ya">Ya</option>
-        <option value="tidak">Tidak</option>
-      </select>
-      <button type="button" class="grey-button button-container"
-        onclick="showPrevForm('anakAngkatContainer', 'thirdForm')">Kembali</button>
-    </div>
-
-    <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
-    <br />
-    <button type="submit" id="submitButton" class="hidden green-button" >Submit</button>
-
-  </form>
-</div>
- </section> 
-
-<a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-<script>
- 
-  var nameDetails = [];
-  var icDetails = [];
-
-  function addSonNameField() {
-    var sonNamesContainer = document.getElementById("sonNamesContainer");
-    var selectedSon = document.getElementById("anakLelaki").value;
-
-    sonNamesContainer.innerHTML = "";
-
-    for (var i = 0; i < selectedSon; i++) {
-      var newSonEntry = document.createElement("div");
-      newSonEntry.className = "sonEntry";
-
-      var newLabelName = document.createElement("label");
-      newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
-
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakLelakiDetails[" + i + "].name";
-      newNameInput.placeholder = "Name";
-
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakLelakiDetails[" + i + "].ic";
-      newIcInput.placeholder = "IC";
-
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
-
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
-
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
-
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
-
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
-
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
-
-      newSonEntry.appendChild(newLabelName);
-      newSonEntry.appendChild(newNameInput);
-      newSonEntry.appendChild(newIcInput);
-      newSonEntry.appendChild(newLabel);
-      newSonEntry.appendChild(newOkuInput);
-
-      sonNamesContainer.appendChild(newSonEntry);
-
-      // Validate and store details
-      newNameInput.addEventListener("blur", function (event) {
-        validateName(event.target);
-      });
-
-      newIcInput.addEventListener("blur", function (event) {
-        validateIc(event.target);
-      });
-    }
-  }
-
-  function addDaughterNameField() {
-    var daughterNamesContainer = document.getElementById("daughterNamesContainer");
-    var selectedDaughter = document.getElementById("anakPerempuan").value;
-
-    daughterNamesContainer.innerHTML = "";
-
-    for (var j = 0; j < selectedDaughter; j++) {
-
-      var newDaughterEntry = document.createElement("div");
-      newDaughterEntry.className = "daughterEntry";
-      var newLabelName = document.createElement("label");
-      newLabelName.textContent = "\nNama Anak Perempuan " + (j + 1) + " :";
-
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakPerempuanDetails[" + j + "].name";
-      newNameInput.placeholder = "Name";
-
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakPerempuanDetails[" + j + "].ic";
-      newIcInput.placeholder = "IC";
-
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
-
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakPerempuanDetails[" + j + "].oku";
-
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
-
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
-
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
-
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
-
-      newDaughterEntry.appendChild(newLabelName);
-      newDaughterEntry.appendChild(newNameInput);
-      newDaughterEntry.appendChild(newIcInput);
-      newDaughterEntry.appendChild(newLabel);
-      newDaughterEntry.appendChild(newOkuInput);
-
-      daughterNamesContainer.appendChild(newDaughterEntry);
-
-      newNameInput.addEventListener("blur", function(event){
-        validateName(event.target);
-      });
-
-      newIcInput.addEventListener("blur", function (event){
-        validateIc(event.target);
-      });
-    }
-  }
-
-  function addAngkatNameField() {
-    var angkatNamesContainer = document.getElementById("angkatNamesContainer");
-    var selectedAngkat = document.getElementById("anakAngkat").value;
-
-    angkatNamesContainer.innerHTML = "";
-
-    for (var i = 0; i < selectedAngkat; i++) {
-
-      var newAngkatEntry = document.createElement("div");
-      newAngkatEntry.className = "angkatEntry";
-      var newLabelName = document.createElement("label");
-      newLabelName.textContent = "\nNama Anak Angkat " + (i + 1) + " :";
-
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakAngkatDetails[" + i + "].name";
-      newNameInput.placeholder = "Name";
-
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakAngkatDetails[" + i + "].ic";
-      newIcInput.placeholder = "IC";
-
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
-
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakAngkatDetails[" + i + "].oku";
-
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
-
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
-
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
-
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
-
-      newAngkatEntry.appendChild(newLabelName);
-      newAngkatEntry.appendChild(newNameInput);
-      newAngkatEntry.appendChild(newIcInput);
-      newAngkatEntry.appendChild(newLabel);
-      newAngkatEntry.appendChild(newOkuInput);
-
-      angkatNamesContainer.appendChild(newAngkatEntry);
-
-      newNameInput.addEventListener("blur", function (event) {
-        validateName(event.target);
-      });
-
-      newIcInput.addEventListener("blur", function (event) {
-        validateIc(event.target);
-      });
-    }
-  }
-
-  function updateIsteriInputs() {
-    var isteriNamesContainer = document.getElementById("isteriNamesContainer");
-    var selectedIsteri = document.getElementById("isteri").value;
-
-    // Clear existing entries
-    isteriNamesContainer.innerHTML = "";
-
-    // Generate new entries based on the selected number of Isteri
-    for (var i = 0; i < selectedIsteri; i++) {
-      var newIsteriEntry = document.createElement("div");
-      newIsteriEntry.className = "isteriEntry";
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nNama Isteri " + (i + 1) + " :";
-
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "isteriDetails[" + i + "].name";
-      newNameInput.placeholder = "Name";
-
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "isteriDetails[" + i + "].ic";
-      newIcInput.placeholder = "IC";
-
-      newIsteriEntry.appendChild(newLabel);
-      newIsteriEntry.appendChild(newNameInput);
-      newIsteriEntry.appendChild(newIcInput);
-
-      isteriNamesContainer.appendChild(newIsteriEntry);
-
-      newNameInput.addEventListener("blur", function (event) {
-        validateName(event.target);
-      });
-
-      newIcInput.addEventListener("blur", function (event) {
-        validateIc(event.target);
-      });
-    }
-  }
-
-  function validateName(inputElement) {
-    var inputValue = inputElement.value;
-
-    // Check for duplicates
-    if (nameDetails.includes(inputValue)) {
-      alert("Error: Duplicate name. Please enter a different name");
-      inputElement.value = ""; // Clear the input field
-      nameDetails.length = 0;
-    } else {
-      nameDetails.push(inputValue); // Store the value
-    }
-  }
-
-  function validateIc(inputElement) {
-    var inputValue = inputElement.value;
-
-    // Check for duplicates
-    if (icDetails.includes(inputValue)) {
-      alert("Error: Duplicate IC. Please enter a different IC");
-      inputElement.value = ""; // Clear the input field
-      icDetails.length = 0;
-    } else if (inputsValue.length !== 12){
-      alert("Error: IC must be exactly minimum and maximum 8 characters long");
-      inputElement.value = "";
-    } else {
-      icDetails.push(inputValue); // Store the value
-    }
-  }
-
-  function updateSuami() {
-    var i = 0;
-    var suamiNamesContainer = document.getElementById("suamiNamesContainer");
-    var selectedSuami = document.getElementById("suami").value;
-
-    suamiNamesContainer.innerHTML = "";
-
-    if (selectedSuami === "ada") {
-      var newSuamiEntry = document.createElement("div");
-      newSuamiEntry.className = "suamiEntry";
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nNama Suami:";
-
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "suamiDetails[" + i + "].name";
-      newNameInput.placeholder = "Name";
-
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "suamiDetails[" + i + "].ic";
-      newIcInput.placeholder = "IC";
-
-      newSuamiEntry.appendChild(newLabel);
-      newSuamiEntry.appendChild(newNameInput);
-      newSuamiEntry.appendChild(newIcInput);
-
-      suamiNamesContainer.appendChild(newSuamiEntry);
-    }
-  }
-
-  //---------------------------------------------------------------------------
-
-  function showForm() {
-    var genderSelect = document.getElementById("gender");
-    var isteriForm = document.getElementById("isteriNum");
-    var suamiForm = document.getElementById("suamiNum");
-
-    // Reset the visibility for both forms
-    isteriForm.classList.add("hidden");
-    suamiForm.classList.add("hidden");
-
-    if (genderSelect.value === "lelaki") {
-      // Show the isteriNum form
-      isteriForm.classList.remove("hidden");
-    } else if (genderSelect.value === "perempuan") {
-      // Show the suamiNum form
-      suamiForm.classList.remove("hidden");
-    }
-  }
-
-  function showNextForm(prev, next) {
-    var prevForm = document.getElementById(prev);
-    var nextForm = document.getElementById(next);
-
-    // Hide the prevForm
-    prevForm.classList.add("hidden");
-
-    // Display the next form
-    nextForm.classList.remove("hidden");
-
-    //fix problem for showing anakLelaki only
-    if (next === 'anakPunya') {
-      document.getElementById('anakPerempuanContainer').classList.add('hidden');
-      document.getElementById('anakAngkatContainer').classList.add('hidden');
-      document.getElementById('okuContainer').classList.add('hidden');
-    }
-  }
-
-  function showPrevForm(prev, next) {
-    var prevForm = document.getElementById(prev);
-    var nextForm = document.getElementById(next);
-
-    // Hide the prevForm
-    nextForm.classList.add("hidden");
-
-    // Display the next form
-    prevForm.classList.remove("hidden");
-  }
-
-  function checkFormCompleteness() {
-    // Get values of the input elements
-    var perbelanjaan = document.getElementById('perbelanjaan').value;
-    var anggaran = document.getElementById('anggaran').value;
-    var hibah = document.getElementById('hibah').value;
-
-    // Check if all required fields are filled
-    if (perbelanjaan !== '' && anggaran !== '' && hibah !== '') {
-      // If yes, show the submit button
-      document.getElementById('submitButton').classList.remove('hidden');
-    } else {
-      // If not, hide the submit button
-      document.getElementById('submitButton').classList.add('hidden');
-    }
-  }
-  //Ethereum
-
-// Connect to Ethereum
-if (typeof window.ethereum  !== 'undefined') {
-    var web3 = new Web3(window.ethereum);
-    ethereum.request({ method: 'eth_requestAccounts' })
-        .then(accounts => {
-            const contractAddress = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B'; 
-            const abi = [[
-            [
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isOKU",
-				"type": "bool"
-			}
-		],
-		"name": "addAnakAngkat",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isOKU",
-				"type": "bool"
-			}
-		],
-		"name": "addAnakLelaki",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isOKU",
-				"type": "bool"
-			}
-		],
-		"name": "addAnakPerempuan",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_spouseType",
-				"type": "string"
-			}
-		],
-		"name": "addSpouse",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_monthlyExpenses",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_estateValue",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_hasHibah",
-				"type": "bool"
-			}
-		],
-		"name": "setWasiatDetails",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "heirType",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			}
-		],
-		"name": "HeirAdded",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "spouseType",
-				"type": "string"
-			}
-		],
-		"name": "SpouseAdded",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "anakAngkats",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isOKU",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "anakLelakis",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isOKU",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "anakPerempuans",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isOKU",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "estateValue",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAnakAngkatCount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAnakLelakiCount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAnakPerempuanCount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getSpouseCount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "hasHibah",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "monthlyExpenses",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "spouses",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "icNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "spouseType",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-]
+    </section>
+
+    <a class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.16.0/web3.min.js"></script>
+    <script th:src="@{/js/createWasiat.js}"></script>
+    <script>
+      /* var nameDetails = [];
+      var icDetails = [];
+
+      function addSonNameField() {
+        var sonNamesContainer = document.getElementById("sonNamesContainer");
+        var selectedSon = document.getElementById("anakLelaki").value;
+
+        sonNamesContainer.innerHTML = "";
+
+        for (var i = 0; i < selectedSon; i++) {
+          var newSonEntry = document.createElement("div");
+          newSonEntry.className = "sonEntry";
+
+          var newLabelName = document.createElement("label");
+          newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
+
+          var newNameInput = document.createElement("input");
+          newNameInput.type = "text";
+          newNameInput.name = "anakLelakiDetails[" + i + "].name";
+          newNameInput.placeholder = "Name";
+
+          var newIcInput = document.createElement("input");
+          newIcInput.type = "text";
+          newIcInput.name = "anakLelakiDetails[" + i + "].ic";
+          newIcInput.placeholder = "IC";
+
+          var newLabel = document.createElement("label");
+          newLabel.textContent = "\nAdakah anak ini OKU?";
+
+          var newOkuInput = document.createElement("select");
+          newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
+
+          var option1 = document.createElement("option");
+          option1.value = "";
+          option1.text = "pilih";
+
+          var option2 = document.createElement("option");
+          option2.value = "ya";
+          option2.text = "ya";
+
+          var option3 = document.createElement("option");
+          option3.value = "tidak";
+          option3.text = "tidak";
+
+          newOkuInput.add(option1);
+          newOkuInput.add(option2);
+          newOkuInput.add(option3);
+
+          newSonEntry.appendChild(newLabelName);
+          newSonEntry.appendChild(newNameInput);
+          newSonEntry.appendChild(newIcInput);
+          newSonEntry.appendChild(newLabel);
+          newSonEntry.appendChild(newOkuInput);
+
+          sonNamesContainer.appendChild(newSonEntry);
+
+          // Validate and store details
+          newNameInput.addEventListener("blur", function (event) {
+            validateName(event.target);
+          });
+
+          newIcInput.addEventListener("blur", function (event) {
+            validateIc(event.target);
+          });
+        }
+      }
+
+      function addDaughterNameField() {
+        var daughterNamesContainer = document.getElementById(
+          "daughterNamesContainer",
+        );
+        var selectedDaughter = document.getElementById("anakPerempuan").value;
+
+        daughterNamesContainer.innerHTML = "";
+
+        for (var j = 0; j < selectedDaughter; j++) {
+          var newDaughterEntry = document.createElement("div");
+          newDaughterEntry.className = "daughterEntry";
+          var newLabelName = document.createElement("label");
+          newLabelName.textContent = "\nNama Anak Perempuan " + (j + 1) + " :";
+
+          var newNameInput = document.createElement("input");
+          newNameInput.type = "text";
+          newNameInput.name = "anakPerempuanDetails[" + j + "].name";
+          newNameInput.placeholder = "Name";
+
+          var newIcInput = document.createElement("input");
+          newIcInput.type = "text";
+          newIcInput.name = "anakPerempuanDetails[" + j + "].ic";
+          newIcInput.placeholder = "IC";
+
+          var newLabel = document.createElement("label");
+          newLabel.textContent = "\nAdakah anak ini OKU?";
+
+          var newOkuInput = document.createElement("select");
+          newOkuInput.name = "anakPerempuanDetails[" + j + "].oku";
+
+          var option1 = document.createElement("option");
+          option1.value = "";
+          option1.text = "pilih";
+
+          var option2 = document.createElement("option");
+          option2.value = "ya";
+          option2.text = "ya";
+
+          var option3 = document.createElement("option");
+          option3.value = "tidak";
+          option3.text = "tidak";
+
+          newOkuInput.add(option1);
+          newOkuInput.add(option2);
+          newOkuInput.add(option3);
+
+          newDaughterEntry.appendChild(newLabelName);
+          newDaughterEntry.appendChild(newNameInput);
+          newDaughterEntry.appendChild(newIcInput);
+          newDaughterEntry.appendChild(newLabel);
+          newDaughterEntry.appendChild(newOkuInput);
+
+          daughterNamesContainer.appendChild(newDaughterEntry);
+
+          newNameInput.addEventListener("blur", function (event) {
+            validateName(event.target);
+          });
+
+          newIcInput.addEventListener("blur", function (event) {
+            validateIc(event.target);
+          });
+        }
+      }
+
+      function addAngkatNameField() {
+        var angkatNamesContainer = document.getElementById(
+          "angkatNamesContainer",
+        );
+        var selectedAngkat = document.getElementById("anakAngkat").value;
+
+        angkatNamesContainer.innerHTML = "";
+
+        for (var i = 0; i < selectedAngkat; i++) {
+          var newAngkatEntry = document.createElement("div");
+          newAngkatEntry.className = "angkatEntry";
+          var newLabelName = document.createElement("label");
+          newLabelName.textContent = "\nNama Anak Angkat " + (i + 1) + " :";
+
+          var newNameInput = document.createElement("input");
+          newNameInput.type = "text";
+          newNameInput.name = "anakAngkatDetails[" + i + "].name";
+          newNameInput.placeholder = "Name";
+
+          var newIcInput = document.createElement("input");
+          newIcInput.type = "text";
+          newIcInput.name = "anakAngkatDetails[" + i + "].ic";
+          newIcInput.placeholder = "IC";
+
+          var newLabel = document.createElement("label");
+          newLabel.textContent = "\nAdakah anak ini OKU?";
+
+          var newOkuInput = document.createElement("select");
+          newOkuInput.name = "anakAngkatDetails[" + i + "].oku";
+
+          var option1 = document.createElement("option");
+          option1.value = "";
+          option1.text = "pilih";
+
+          var option2 = document.createElement("option");
+          option2.value = "ya";
+          option2.text = "ya";
+
+          var option3 = document.createElement("option");
+          option3.value = "tidak";
+          option3.text = "tidak";
+
+          newOkuInput.add(option1);
+          newOkuInput.add(option2);
+          newOkuInput.add(option3);
+
+          newAngkatEntry.appendChild(newLabelName);
+          newAngkatEntry.appendChild(newNameInput);
+          newAngkatEntry.appendChild(newIcInput);
+          newAngkatEntry.appendChild(newLabel);
+          newAngkatEntry.appendChild(newOkuInput);
+
+          angkatNamesContainer.appendChild(newAngkatEntry);
+
+          newNameInput.addEventListener("blur", function (event) {
+            validateName(event.target);
+          });
+
+          newIcInput.addEventListener("blur", function (event) {
+            validateIc(event.target);
+          });
+        }
+      }
+
+      function updateIsteriInputs() {
+        var isteriNamesContainer = document.getElementById(
+          "isteriNamesContainer",
+        );
+        var selectedIsteri = document.getElementById("isteri").value;
+
+        // Clear existing entries
+        isteriNamesContainer.innerHTML = "";
+
+        // Generate new entries based on the selected number of Isteri
+        for (var i = 0; i < selectedIsteri; i++) {
+          var newIsteriEntry = document.createElement("div");
+          newIsteriEntry.className = "isteriEntry";
+          var newLabel = document.createElement("label");
+          newLabel.textContent = "\nNama Isteri " + (i + 1) + " :";
+
+          var newNameInput = document.createElement("input");
+          newNameInput.type = "text";
+          newNameInput.name = "isteriDetails[" + i + "].name";
+          newNameInput.placeholder = "Name";
+
+          var newIcInput = document.createElement("input");
+          newIcInput.type = "text";
+          newIcInput.name = "isteriDetails[" + i + "].ic";
+          newIcInput.placeholder = "IC";
+
+          newIsteriEntry.appendChild(newLabel);
+          newIsteriEntry.appendChild(newNameInput);
+          newIsteriEntry.appendChild(newIcInput);
+
+          isteriNamesContainer.appendChild(newIsteriEntry);
+
+          newNameInput.addEventListener("blur", function (event) {
+            validateName(event.target);
+          });
+
+          newIcInput.addEventListener("blur", function (event) {
+            validateIc(event.target);
+          });
+        }
+      }
+
+      function validateName(inputElement) {
+        var inputValue = inputElement.value;
+
+        // Check for duplicates
+        if (nameDetails.includes(inputValue)) {
+          alert("Error: Duplicate name. Please enter a different name");
+          inputElement.value = ""; // Clear the input field
+          nameDetails.length = 0;
+        } else {
+          nameDetails.push(inputValue); // Store the value
+        }
+
+        nameDetails.push(inputValue);
+      }
+
+      function validateIc(inputElement) {
+        var inputValue = inputElement.value;
+
+        // Check for duplicates
+        if (icDetails.includes(inputValue)) {
+          alert("Error: Duplicate IC. Please enter a different IC");
+          inputElement.value = ""; // Clear the input field
+          icDetails.length = 0;
+        } else if (inputValue.length !== 12) {
+          alert(
+            "Error: IC must be exactly minimum and maximum 8 characters long",
+          );
+          inputElement.value = "";
+        } else {
+          icDetails.push(inputValue); // Store the value
+        }
+
+        icDetails.push(inputValue);
+      }
+
+      function updateSuami() {
+        var i = 0;
+        var suamiNamesContainer = document.getElementById(
+          "suamiNamesContainer",
+        );
+        var selectedSuami = document.getElementById("suami").value;
+
+        suamiNamesContainer.innerHTML = "";
+
+        if (selectedSuami === "ada") {
+          var newSuamiEntry = document.createElement("div");
+          newSuamiEntry.className = "suamiEntry";
+          var newLabel = document.createElement("label");
+          newLabel.textContent = "\nNama Suami:";
+
+          var newNameInput = document.createElement("input");
+          newNameInput.type = "text";
+          newNameInput.name = "suamiDetails[" + i + "].name";
+          newNameInput.placeholder = "Name";
+
+          var newIcInput = document.createElement("input");
+          newIcInput.type = "text";
+          newIcInput.name = "suamiDetails[" + i + "].ic";
+          newIcInput.placeholder = "IC";
+
+          newSuamiEntry.appendChild(newLabel);
+          newSuamiEntry.appendChild(newNameInput);
+          newSuamiEntry.appendChild(newIcInput);
+
+          suamiNamesContainer.appendChild(newSuamiEntry);
+        }
+      }
+
+      //---------------------------------------------------------------------------
+
+      function showForm() {
+        var genderSelect = document.getElementById("gender");
+        var isteriForm = document.getElementById("isteriNum");
+        var suamiForm = document.getElementById("suamiNum");
+
+        // Reset the visibility for both forms
+        isteriForm.classList.add("hidden");
+        suamiForm.classList.add("hidden");
+
+        if (genderSelect.value === "lelaki") {
+          // Show the isteriNum form
+          isteriForm.classList.remove("hidden");
+        } else if (genderSelect.value === "perempuan") {
+          // Show the suamiNum form
+          suamiForm.classList.remove("hidden");
+        }
+      }
+
+      function showNextForm(prev, next) {
+        var prevForm = document.getElementById(prev);
+        var nextForm = document.getElementById(next);
+
+        // Hide the prevForm
+        prevForm.classList.add("hidden");
+
+        // Display the next form
+        nextForm.classList.remove("hidden");
+
+        //fix problem for showing anakLelaki only
+        if (next === "anakPunya") {
+          document
+            .getElementById("anakPerempuanContainer")
+            .classList.add("hidden");
+          document
+            .getElementById("anakAngkatContainer")
+            .classList.add("hidden");
+          document.getElementById("okuContainer").classList.add("hidden");
+        }
+      }
+
+      function showPrevForm(prev, next) {
+        var prevForm = document.getElementById(prev);
+        var nextForm = document.getElementById(next);
+
+        // Hide the prevForm
+        nextForm.classList.add("hidden");
+
+        // Display the next form
+        prevForm.classList.remove("hidden");
+      }
+
+      function checkFormCompleteness() {
+        // Get values of the input elements
+        var perbelanjaan = document.getElementById("perbelanjaan").value;
+        var anggaran = document.getElementById("anggaran").value;
+        var hibah = document.getElementById("hibah").value;
+
+        // Check if all required fields are filled
+        if (perbelanjaan !== "" && anggaran !== "" && hibah !== "") {
+          // If yes, show the submit button
+          document.getElementById("submitButton").classList.remove("hidden");
+        } else {
+          // If not, hide the submit button
+          document.getElementById("submitButton").classList.add("hidden");
+        }
+      } */
+      //Ethereum
+
+      const SEPOLIA_CHAIN_ID = "0xaa36a7"; // Hex for 11155111
+
+      async function checkNetwork() {
+        const currentChainId = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+
+        if (currentChainId !== SEPOLIA_CHAIN_ID) {
+          try {
+            // Ask MetaMask to switch to Sepolia
+            await window.ethereum.request({
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId: SEPOLIA_CHAIN_ID }],
+            });
+          } catch (switchError) {
+            // This error code indicates that the chain has not been added to MetaMask.
+            if (switchError.code === 4902) {
+              alert("Please add the Sepolia network to your MetaMask!");
+            }
+          }
+        }
+      }
+
+      // Connect to Ethereum
+      if (typeof window.ethereum !== "undefined") {
+        // Run this when your app loads or when the user clicks "Connect Wallet"
+        checkNetwork();
+
+        var web3 = new Web3(window.ethereum);
+
+        console.log(web3);
+        ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((accounts) => {
+            const __contractAddress =
+              "0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B";
+            const contractAddress =
+              "0xfe0d4cdc98165c8d8dc76bed19bf8b1ae42cf9ba";
+            const abi = [
+              {
+                inputs: [],
+                stateMutability: "nonpayable",
+                type: "constructor",
+              },
+              {
+                anonymous: false,
+                inputs: [
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "heirType",
+                    type: "string",
+                  },
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "name",
+                    type: "string",
+                  },
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "icNumber",
+                    type: "string",
+                  },
+                ],
+                name: "HeirAdded",
+                type: "event",
+              },
+              {
+                anonymous: false,
+                inputs: [
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "name",
+                    type: "string",
+                  },
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "icNumber",
+                    type: "string",
+                  },
+                  {
+                    indexed: false,
+                    internalType: "string",
+                    name: "spouseType",
+                    type: "string",
+                  },
+                ],
+                name: "SpouseAdded",
+                type: "event",
+              },
+              {
+                inputs: [
+                  { internalType: "string", name: "_name", type: "string" },
+                  { internalType: "string", name: "_icNumber", type: "string" },
+                  { internalType: "bool", name: "_isOKU", type: "bool" },
+                ],
+                name: "addAnakAngkat",
+                outputs: [],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "string", name: "_name", type: "string" },
+                  { internalType: "string", name: "_icNumber", type: "string" },
+                  { internalType: "bool", name: "_isOKU", type: "bool" },
+                ],
+                name: "addAnakLelaki",
+                outputs: [],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "string", name: "_name", type: "string" },
+                  { internalType: "string", name: "_icNumber", type: "string" },
+                  { internalType: "bool", name: "_isOKU", type: "bool" },
+                ],
+                name: "addAnakPerempuan",
+                outputs: [],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "string", name: "_name", type: "string" },
+                  { internalType: "string", name: "_icNumber", type: "string" },
+                  {
+                    internalType: "string",
+                    name: "_spouseType",
+                    type: "string",
+                  },
+                ],
+                name: "addSpouse",
+                outputs: [],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                name: "anakAngkats",
+                outputs: [
+                  { internalType: "string", name: "name", type: "string" },
+                  { internalType: "string", name: "icNumber", type: "string" },
+                  { internalType: "bool", name: "isOKU", type: "bool" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                name: "anakLelakis",
+                outputs: [
+                  { internalType: "string", name: "name", type: "string" },
+                  { internalType: "string", name: "icNumber", type: "string" },
+                  { internalType: "bool", name: "isOKU", type: "bool" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                name: "anakPerempuans",
+                outputs: [
+                  { internalType: "string", name: "name", type: "string" },
+                  { internalType: "string", name: "icNumber", type: "string" },
+                  { internalType: "bool", name: "isOKU", type: "bool" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "estateValue",
+                outputs: [{ internalType: "string", name: "", type: "string" }],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "getAnakAngkatCount",
+                outputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "getAnakLelakiCount",
+                outputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "getAnakPerempuanCount",
+                outputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "getSpouseCount",
+                outputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "hasHibah",
+                outputs: [{ internalType: "bool", name: "", type: "bool" }],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "monthlyExpenses",
+                outputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "bytes[]", name: "data", type: "bytes[]" },
+                ],
+                name: "multicall",
+                outputs: [
+                  { internalType: "bytes[]", name: "results", type: "bytes[]" },
+                ],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [],
+                name: "owner",
+                outputs: [
+                  { internalType: "address", name: "", type: "address" },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
+              {
+                inputs: [
+                  {
+                    internalType: "uint256",
+                    name: "_monthlyExpenses",
+                    type: "uint256",
+                  },
+                  {
+                    internalType: "string",
+                    name: "_estateValue",
+                    type: "string",
+                  },
+                  { internalType: "bool", name: "_hasHibah", type: "bool" },
+                ],
+                name: "setWasiatDetails",
+                outputs: [],
+                stateMutability: "nonpayable",
+                type: "function",
+              },
+              {
+                inputs: [
+                  { internalType: "uint256", name: "", type: "uint256" },
+                ],
+                name: "spouses",
+                outputs: [
+                  { internalType: "string", name: "name", type: "string" },
+                  { internalType: "string", name: "icNumber", type: "string" },
+                  {
+                    internalType: "string",
+                    name: "spouseType",
+                    type: "string",
+                  },
+                ],
+                stateMutability: "view",
+                type: "function",
+              },
             ];
 
             const contract = new web3.eth.Contract(abi, contractAddress);
-            //Handle submit form
-            document.querySelector('form').addEventListener('wasiatcontract', async function(event) {
-                event.preventDefault();
-                
-                try {
-                    const accounts = await web3.eth.getAccounts();
-                    let transactionHashes = [];
 
-                    // Handle Sons (Anak Lelaki)
-                    const sonEntries = document.getElementsByClassName('sonEntry');
-                    for (let entry of sonEntries) {
-                        const name = entry.querySelector('input[name$="name"]').value;
-                        const ic = entry.querySelector('input[name$="ic"]').value;
-                        const oku = entry.querySelector('select[name$="oku"]').value === 'ya';
-                        
-                        const tx = await contract.methods.addAnakLelaki(name, ic, oku)
-                            .send({ from: accounts[0] });
-                        transactionHashes.push(tx.transactionHash);
-                    }
+            const onFormSubmit = async (event) => {
+              event.preventDefault();
 
-                    // Handle Daughters (Anak Perempuan)
-                    const daughterEntries = document.getElementsByClassName('daughterEntry');
-                    for (let entry of daughterEntries) {
-                        const name = entry.querySelector('input[name$="name"]').value;
-                        const ic = entry.querySelector('input[name$="ic"]').value;
-                        const oku = entry.querySelector('select[name$="oku"]').value === 'ya';
-                        
-                        const tx = await contract.methods.addAnakPerempuan(name, ic, oku)
-                            .send({ from: accounts[0] });
-                        transactionHashes.push(tx.transactionHash);
-                    }
+              const contractCalls = []; // Array to store encoded function calls
 
-                    // Handle Adopted Children (Anak Angkat)
-                    const angkatEntries = document.getElementsByClassName('angkatEntry');
-                    for (let entry of angkatEntries) {
-                        const name = entry.querySelector('input[name$="name"]').value;
-                        const ic = entry.querySelector('input[name$="ic"]').value;
-                        const oku = entry.querySelector('select[name$="oku"]').value === 'ya';
-                        
-                        const tx = await contract.methods.addAnakAngkat(name, ic, oku)
-                            .send({ from: accounts[0] });
-                        transactionHashes.push(tx.transactionHash);
-                    }
+              try {
+                const accounts = await web3.eth.getAccounts();
 
-                    // Handle Spouse (Wife/Husband)
-                    const gender = document.getElementById('gender').value;
-                    if (gender === 'lelaki') {
-                        const wifeEntries = document.getElementsByClassName('isteriEntry');
-                        for (let entry of wifeEntries) {
-                            const name = entry.querySelector('input[name$="name"]').value;
-                            const ic = entry.querySelector('input[name$="ic"]').value;
-                            const tx = await contract.methods.addSpouse(name, ic, 'isteri')
-                                .send({ from: accounts[0] });
-                            transactionHashes.push(tx.transactionHash);
-                        }
-                    } else if (gender === 'perempuan') {
-                        const husbandEntry = document.querySelector('.suamiEntry');
-                        if (husbandEntry) {
-                            const name = husbandEntry.querySelector('input[name$="name"]').value;
-                            const ic = husbandEntry.querySelector('input[name$="ic"]').value;
-                            const tx = await contract.methods.addSpouse(name, ic, 'suami')
-                                .send({ from: accounts[0] });
-                            transactionHashes.push(tx.transactionHash);
-                        }
-                    }
+                // 1. Handle Son Entries
+                const sonEntries = document.getElementsByClassName("sonEntry");
+                for (let entry of sonEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
 
-                    // Handle Wasiat Details
-                    const monthlyExpenses = document.getElementById('perbelanjaan').value;
-                    const estateValue = document.getElementById('anggaran').value;
-                    const hasHibah = document.getElementById('hibah').value === 'ya';
-
-                    const detailsTx = await contract.methods.setWasiatDetails(
-                        monthlyExpenses,
-                        estateValue,
-                        hasHibah
-                    ).send({ from: accounts[0] });
-                    transactionHashes.push(detailsTx.transactionHash);
-
-                    // Create status elements if they don't exist
-                    if (!document.getElementById('status')) {
-                        const statusDiv = document.createElement('div');
-                        statusDiv.id = 'status';
-                        document.querySelector('form').appendChild(statusDiv);
-                    }
-                    if (!document.getElementById('contractAddressSection')) {
-                        const addressDiv = document.createElement('div');
-                        addressDiv.id = 'contractAddressSection';
-                        document.querySelector('form').appendChild(addressDiv);
-                    }
-
-                    // Update status
-                    document.getElementById('status').innerText = 'All heir information successfully added to blockchain!';
-                    document.getElementById('contractAddressSection').innerHTML = `<p>Contract Address: ${contractAddress}</p>`;
-
-                    // Save to backend
-                    const response = await fetch('/save-contract-address', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: `contractAddress=${encodeURIComponent(contractAddress)}&transactionHash=${transactionHashes.join(',')}`
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Failed to save contract details');
-                    }
-
-                    // Submit form to server
-                    event.target.submit();
-
-                } catch (error) {
-                    console.error('Error:', error);
-                    if (!document.getElementById('status')) {
-                        const statusDiv = document.createElement('div');
-                        statusDiv.id = 'status';
-                        document.querySelector('form').appendChild(statusDiv);
-                    }
-                    document.getElementById('status').innerText = 'Error submitting heir information to blockchain';
+                  contractCalls.push(
+                    contract.methods.addAnakLelaki(name, ic, oku).encodeABI(),
+                  );
                 }
-            });
-        })
-        .catch(error => {
+
+                // 2. Handle Daughter Entries
+                const daughterEntries =
+                  document.getElementsByClassName("daughterEntry");
+                for (let entry of daughterEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
+
+                  contractCalls.push(
+                    contract.methods
+                      .addAnakPerempuan(name, ic, oku)
+                      .encodeABI(),
+                  );
+                }
+
+                // 3. Handle Adopted Children (Anak Angkat)
+                const angkatEntries =
+                  document.getElementsByClassName("angkatEntry");
+                for (let entry of angkatEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
+
+                  contractCalls.push(
+                    contract.methods.addAnakAngkat(name, ic, oku).encodeABI(),
+                  );
+                }
+
+                // 4. Handle Spouse
+                const gender = document.getElementById("gender").value;
+                if (gender === "lelaki") {
+                  const wifeEntries =
+                    document.getElementsByClassName("isteriEntry");
+                  for (let entry of wifeEntries) {
+                    const name = entry.querySelector(
+                      'input[name$="name"]',
+                    ).value;
+                    const ic = entry.querySelector('input[name$="ic"]').value;
+                    contractCalls.push(
+                      contract.methods
+                        .addSpouse(name, ic, "isteri")
+                        .encodeABI(),
+                    );
+                  }
+                } else if (gender === "perempuan") {
+                  const husbandEntry = document.querySelector(".suamiEntry");
+                  if (husbandEntry) {
+                    const name = husbandEntry.querySelector(
+                      'input[name$="name"]',
+                    ).value;
+                    const ic =
+                      husbandEntry.querySelector('input[name$="ic"]').value;
+                    contractCalls.push(
+                      contract.methods.addSpouse(name, ic, "suami").encodeABI(),
+                    );
+                  }
+                }
+
+                // 5. Handle Wasiat Details
+                const monthlyExpenses =
+                  document.getElementById("perbelanjaan").value;
+                const estateValue = document.getElementById("anggaran").value;
+                const hasHibah =
+                  document.getElementById("hibah").value === "ya";
+
+                contractCalls.push(
+                  contract.methods
+                    .setWasiatDetails(monthlyExpenses, estateValue, hasHibah)
+                    .encodeABI(),
+                );
+
+                // --- THE BIG MOMENT: EXECUTE MULTICALL ---
+                // This triggers only ONE MetaMask popup for the user
+                const tx = await contract.methods
+                  .multicall(contractCalls)
+                  .send({ from: accounts[0] });
+
+                // Save to backend (Optional but recommended for your EMS)
+                /* await fetch("/save-contract-address", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                  body: `contractAddress=${encodeURIComponent(contractAddress)}&transactionHash=${tx.transactionHash}`,
+                }); */
+
+                // Finalize form submission to server
+                event.target.submit();
+              } catch (error) {
+                console.error("Error:", error);
+                if (!document.getElementById("status")) {
+                  const statusDiv = document.createElement("div");
+                  statusDiv.id = "status";
+                  document.querySelector("form").appendChild(statusDiv);
+                }
+                document.getElementById("status").innerText =
+                  "Error submitting heir information to blockchain";
+              }
+            };
+
+            const tempOnFormSubmit = async function (event) {
+              event.preventDefault();
+
+              try {
+                const accounts = await web3.eth.getAccounts();
+                let transactionHashes = [];
+
+                // Handle Sons (Anak Lelaki)
+                const sonEntries = document.getElementsByClassName("sonEntry");
+                for (let entry of sonEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
+
+                  const tx = await contract.methods
+                    .addAnakLelaki(name, ic, oku)
+                    .send({ from: accounts[0] });
+                  transactionHashes.push(tx.transactionHash);
+                }
+
+                // Handle Daughters (Anak Perempuan)
+                const daughterEntries =
+                  document.getElementsByClassName("daughterEntry");
+                for (let entry of daughterEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
+
+                  const tx = await contract.methods
+                    .addAnakPerempuan(name, ic, oku)
+                    .send({ from: accounts[0] });
+                  transactionHashes.push(tx.transactionHash);
+                }
+
+                // Handle Adopted Children (Anak Angkat)
+                const angkatEntries =
+                  document.getElementsByClassName("angkatEntry");
+                for (let entry of angkatEntries) {
+                  const name = entry.querySelector('input[name$="name"]').value;
+                  const ic = entry.querySelector('input[name$="ic"]').value;
+                  const oku =
+                    entry.querySelector('select[name$="oku"]').value === "ya";
+
+                  const tx = await contract.methods
+                    .addAnakAngkat(name, ic, oku)
+                    .send({ from: accounts[0] });
+                  transactionHashes.push(tx.transactionHash);
+                }
+
+                // Handle Spouse (Wife/Husband)
+                const gender = document.getElementById("gender").value;
+                if (gender === "lelaki") {
+                  const wifeEntries =
+                    document.getElementsByClassName("isteriEntry");
+                  for (let entry of wifeEntries) {
+                    const name = entry.querySelector(
+                      'input[name$="name"]',
+                    ).value;
+                    const ic = entry.querySelector('input[name$="ic"]').value;
+                    const tx = await contract.methods
+                      .addSpouse(name, ic, "isteri")
+                      .send({ from: accounts[0] });
+                    transactionHashes.push(tx.transactionHash);
+                  }
+                } else if (gender === "perempuan") {
+                  const husbandEntry = document.querySelector(".suamiEntry");
+                  if (husbandEntry) {
+                    const name = husbandEntry.querySelector(
+                      'input[name$="name"]',
+                    ).value;
+                    const ic =
+                      husbandEntry.querySelector('input[name$="ic"]').value;
+                    const tx = await contract.methods
+                      .addSpouse(name, ic, "suami")
+                      .send({ from: accounts[0] });
+                    transactionHashes.push(tx.transactionHash);
+                  }
+                }
+
+                // Handle Wasiat Details
+                const monthlyExpenses =
+                  document.getElementById("perbelanjaan").value;
+                const estateValue = document.getElementById("anggaran").value;
+                const hasHibah =
+                  document.getElementById("hibah").value === "ya";
+
+                const detailsTx = await contract.methods
+                  .setWasiatDetails(monthlyExpenses, estateValue, hasHibah)
+                  .send({ from: accounts[0] });
+                transactionHashes.push(detailsTx.transactionHash);
+
+                // Create status elements if they don't exist
+                if (!document.getElementById("status")) {
+                  const statusDiv = document.createElement("div");
+                  statusDiv.id = "status";
+                  document.querySelector("form").appendChild(statusDiv);
+                }
+                if (!document.getElementById("contractAddressSection")) {
+                  const addressDiv = document.createElement("div");
+                  addressDiv.id = "contractAddressSection";
+                  document.querySelector("form").appendChild(addressDiv);
+                }
+
+                // Update status
+                document.getElementById("status").innerText =
+                  "All heir information successfully added to blockchain!";
+                document.getElementById("contractAddressSection").innerHTML =
+                  `<p>Contract Address: ${contractAddress}</p>`;
+
+                // Save to backend
+                const response = await fetch("/save-contract-address", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                  body: `contractAddress=${encodeURIComponent(contractAddress)}&transactionHash=${transactionHashes.join(",")}`,
+                });
+
+                if (!response.ok) {
+                  throw new Error("Failed to save contract details");
+                }
+
+                // Submit form to server
+                event.target.submit();
+              } catch (error) {
+                console.error("Error:", error);
+                if (!document.getElementById("status")) {
+                  const statusDiv = document.createElement("div");
+                  statusDiv.id = "status";
+                  document.querySelector("form").appendChild(statusDiv);
+                }
+                document.getElementById("status").innerText =
+                  "Error submitting heir information to blockchain";
+              }
+            };
+
+            //Handle submit form
+            document
+              .querySelector("form")
+              .addEventListener("submit", onFormSubmit);
+
+            console.log("Success");
+          })
+          .catch((error) => {
             console.error(error);
-            alert('Please install MetaMask or connect to an Ethereum wallet');
-        });
-} else {
-    alert('Please install MetaMask to interact with the contract');
-}
-</script>
+            alert("Please install MetaMask or connect to an Ethereum wallet");
+          });
+      } else {
+        alert("Please install MetaMask to interact with the contract");
+      }
+    </script>
 
-<!-- <script th:src="@{/js/contract.js}"></script> -->
-<script th:src="@{/vendor/aos/aos.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/vendor/glightbox/js/glightbox.min.js}"></script>
-<script th:src="@{/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
-<script th:src="@{/vendor/swiper/swiper-bundle.min.js}"></script>
-<script th:src="@{/vendor/php-email-form/validate.js}"></script>
+    <!-- <script th:src="@{/js/contract.js}"></script> -->
+    <script th:src="@{/vendor/aos/aos.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/glightbox/js/glightbox.min.js}"></script>
+    <script th:src="@{/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/vendor/swiper/swiper-bundle.min.js}"></script>
+    <script th:src="@{/vendor/php-email-form/validate.js}"></script>
 
-<!-- Template Main JS File -->
-<script th:src="@{/js/main.js}"></script>
-</body>
-
+    <!-- Template Main JS File -->
+    <script th:src="@{/js/main.js}"></script>
+  </body>
 </html>

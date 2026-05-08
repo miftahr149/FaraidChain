@@ -18,24 +18,24 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table
-public class Land extends Property{
-    private String titleId;
+public class Land extends Property {
+  private String titleId;
 
-    private double tax;
+  private double tax;
 
-    private String state;
-    
-    private String district;
+  private String state;
 
-    private String address;
+  private String district;
 
-    private String lotNumber;
+  private String address;
 
-    private double area;
+  private String lotNumber;
 
-    private String type;
-    //pertanian, bangunan, industri
+  private double area;
 
-    private Date regDate;
-    
+  private String type;
+  // pertanian, bangunan, industri
+
+  private Date regDate;
+
 }

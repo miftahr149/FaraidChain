@@ -103,7 +103,7 @@ public class AuthController {
             // This might involve showing an error message or redirecting to an error page
             return "error";
         }
-        return "editprofile";
+        return "editProfile";
     }
 
     // handler method to handle register user form submit request
